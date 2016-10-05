@@ -1,0 +1,23 @@
+.container {
+    width: 90% !important;
+}
+
+.btn-small {
+    padding: 0 1rem;
+}
+
+.action-btn {
+    margin: 0.1em !important;
+}
+
+.progress {
+    border-radius: 0 !important;
+}
+
+nav .brand-logo {
+    padding-left: 5px !important;
+}
+
+.heroic-red{
+    background-color:#b90707 !important
+}
