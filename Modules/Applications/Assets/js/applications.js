@@ -162,21 +162,21 @@ function denyApplication(id){
         });
 }
 
-function loadTable(){
+function loadTable(url){
     var employee_id = $('#employee_id').val();
     var accessLevel = $('#access_level').val();
-    var url = '';
 
-    if(accessLevel == 1){ // Admin | Manager
-        url = 'applications/get/all'
-    }else if(accessLevel == 2){ // Supervisor
-        url = 'applications/get/supervisor_level/' + employee_id;
-    }else if(accessLevel == 3){ // Regular Employee
-        url = 'applications/get/employee_level/' + employee_id;
+    if(url !== null && url != ''){
+        if(accessLevel == 1){ // Admin | Manager
+            url = 'applications/get/all'
+        }else if(accessLevel == 2){ // Supervisor
+            url = 'applications/get/supervisor_level/';
+        }else if(accessLevel == 3){ // Regular Employee
+            url = 'applications/get/employee_level/' + employee_id;
+        }
     }
 
     applications_table = $('#applications_table').DataTable({
-        //processing: true,
         serverSide: true,
         ajax: {
             url: url,

@@ -83,12 +83,12 @@ class ApplicationsController extends Controller
                 // can only approve pending applications
                 // once approved or denied, it will be final and irrevocable
                 // approve
-                $actions .= Employee::canApprove(Auth::user()->id) && $application->status == Application::PENDING ? '<button class="btn btn-small action-btn waves-effect waves-light green darken-1 btn-approve_application" type="button" title="Approve" data-id="'.$application->id.'">
+                $actions .= Employee::canApprove(Auth::user()->id) && $application->status == Application::PENDING && !$is_owner ? '<button class="btn btn-small action-btn waves-effect waves-light green darken-1 btn-approve_application" type="button" title="Approve" data-id="'.$application->id.'">
                             <i class="fa fa-thumbs-up" aria-hidden="true"></i>
                         </button>' : '';
 
                 // disapprove
-                $actions .= Employee::canApprove(Auth::user()->id) && $application->status == Application::PENDING ? '<button class="btn btn-small action-btn waves-effect waves-light red darken-1 btn-deny_application" type="button" title="Deny" data-id="'.$application->id.'">
+                $actions .= Employee::canApprove(Auth::user()->id) && $application->status == Application::PENDING && !$is_owner ? '<button class="btn btn-small action-btn waves-effect waves-light red darken-1 btn-deny_application" type="button" title="Deny" data-id="'.$application->id.'">
                             <i class="fa fa-thumbs-down" aria-hidden="true"></i>
                         </button>' : '';
                 // end - for "can approve" employee types
@@ -96,7 +96,7 @@ class ApplicationsController extends Controller
                 // delete
                 // can delete only pending applications
                 $actions .= $is_owner && $application->status == Application::PENDING ? '<button class="btn btn-small action-btn waves-effect waves-light red darken-3 btn-delete_application" type="button" title="Delete" data-id="'.$application->id.'">
-                        <i class="material-icons">delete</i>
+                        <i class="fa fa-trash" aria-hidden="true"></i>
                     </button>' : '';
 
                 return $actions;
@@ -104,8 +104,8 @@ class ApplicationsController extends Controller
             ->make(true);
     }
 
-    public function getSupervisedApplications($employee_id){
-        $supervisor_id = $employee_id ? $employee_id : Auth::user()->id;
+    public function getSupervisedApplications(){
+        $supervisor_id = Auth::user()->id;
         $applications = Application::select([
                 'applications.id',
                 'applications.employee_id',
@@ -154,12 +154,12 @@ class ApplicationsController extends Controller
 
                 // start - for "can approve" employee types
                 // approve
-                $actions .= Employee::canApprove(Auth::user()->id) ? '<button class="btn btn-small action-btn waves-effect waves-light green darken-1 btn-approve_application" type="button" title="Approve" data-id="'.$application->id.'">
+                $actions .= Employee::canApprove(Auth::user()->id) && $application->status == Application::PENDING && !$is_owner ? '<button class="btn btn-small action-btn waves-effect waves-light green darken-1 btn-approve_application" type="button" title="Approve" data-id="'.$application->id.'">
                             <i class="fa fa-thumbs-up" aria-hidden="true"></i>
                         </button>' : '';
 
                 // disapprove
-                $actions .= Employee::canApprove(Auth::user()->id) ? '<button class="btn btn-small action-btn waves-effect waves-light red darken-1 btn-deny_application" type="button" title="Deny" data-id="'.$application->id.'">
+                $actions .= Employee::canApprove(Auth::user()->id) && $application->status == Application::PENDING && !$is_owner ? '<button class="btn btn-small action-btn waves-effect waves-light red darken-1 btn-deny_application" type="button" title="Deny" data-id="'.$application->id.'">
                             <i class="fa fa-thumbs-down" aria-hidden="true"></i>
                         </button>' : '';
                 // end - for "can approve" employee types
@@ -167,7 +167,7 @@ class ApplicationsController extends Controller
                 // delete
                 // can delete only pending applications
                 $actions .= $is_owner && $application->status == Application::PENDING ? '<button class="btn btn-small action-btn waves-effect waves-light red darken-3 btn-delete_application" type="button" title="Delete" data-id="'.$application->id.'">
-                        <i class="material-icons">delete</i>
+                        <i class="fa fa-trash" aria-hidden="true"></i>
                     </button>' : '';
 
                 return $actions;
@@ -177,6 +177,7 @@ class ApplicationsController extends Controller
 
     public function getEmployeeApplications($employee_id)
     {
+        $employee_id = $employee_id ? $employee_id : Auth::user()->id;
         $applications = Application::select([
                 'applications.id',
                 'applications.employee_id',
@@ -224,12 +225,12 @@ class ApplicationsController extends Controller
 
                 // start - for "can approve" employee types
                 // approve
-                $actions .= Employee::canApprove(Auth::user()->id) ? '<button class="btn btn-small action-btn waves-effect waves-light green darken-1 btn-approve_application" type="button" title="Approve" data-id="'.$application->id.'">
+                $actions .= Employee::canApprove(Auth::user()->id) && $application->status == Application::PENDING && !$is_owner ? '<button class="btn btn-small action-btn waves-effect waves-light green darken-1 btn-approve_application" type="button" title="Approve" data-id="'.$application->id.'">
                             <i class="fa fa-thumbs-up" aria-hidden="true"></i>
                         </button>' : '';
 
                 // disapprove
-                $actions .= Employee::canApprove(Auth::user()->id) ? '<button class="btn btn-small action-btn waves-effect waves-light red darken-1 btn-deny_application" type="button" title="Deny" data-id="'.$application->id.'">
+                $actions .= Employee::canApprove(Auth::user()->id) && $application->status == Application::PENDING && !$is_owner ? '<button class="btn btn-small action-btn waves-effect waves-light red darken-1 btn-deny_application" type="button" title="Deny" data-id="'.$application->id.'">
                             <i class="fa fa-thumbs-down" aria-hidden="true"></i>
                         </button>' : '';
                 // end - for "can approve" employee types
@@ -237,7 +238,7 @@ class ApplicationsController extends Controller
                 // delete
                 // can delete only pending applications
                 $actions .= $is_owner && $application->status == Application::PENDING ? '<button class="btn btn-small action-btn waves-effect waves-light red darken-3 btn-delete_application" type="button" title="Delete" data-id="'.$application->id.'">
-                        <i class="material-icons">delete</i>
+                        <i class="fa fa-trash" aria-hidden="true"></i>
                     </button>' : '';
 
                 return $actions;
