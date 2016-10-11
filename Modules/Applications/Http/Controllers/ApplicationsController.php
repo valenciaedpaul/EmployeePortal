@@ -252,6 +252,7 @@ class ApplicationsController extends Controller
         $this->data['application_types'] = ApplicationType::all();
         $this->data['department'] = Department::find($employee->department_id);
         $this->data['supervisors'] = Employee::supervisors($employee);
+        $this->data['cancel_url'] = session()->has('redirect_url') ? session()->pull('redirect_url') : 'applications';
         return view('applications::form', $this->data);
     }
 
@@ -264,12 +265,14 @@ class ApplicationsController extends Controller
                 $this->data['application_types'] = ApplicationType::all();
                 $this->data['department'] = Department::find($employee->department_id);
                 $this->data['supervisors'] = Employee::supervisors($employee);
+                $this->data['cancel_url'] = session()->has('redirect_url') ? session()->pull('redirect_url') : 'applications';
                 return view('applications::form', $this->data);
             }else{
                 return redirect('applications')->with('error_message', 'Unable to load Application Details. Application not found.');
             }
         }else{
-            return redirect('applications')->with('error_message', 'Unable to load Application Details. No Application ID provided.');
+            $url = session()->has('redirect_url') ? session()->pull('redirect_url') : 'applications';
+            return redirect($url)->with('error_message', 'Unable to load Application Details. No Application ID provided.');
         }
     }
 
@@ -356,7 +359,8 @@ class ApplicationsController extends Controller
             $application->reason = $inputs['reason'];
             $application->status = 'pending';
             if($application->save()){
-                return redirect('applications')->with('success_message', 'Application successfully updated.');
+                $url = session()->has('redirect_url') ? session()->pull('redirect_url') : 'applications';
+                return redirect($url)->with('success_message', 'Application successfully updated.');
             }else{
                 return redirect('applications/forms')
                     ->with('error_message', 'Something went wrong upon updating your application. Please double check your inputs.')

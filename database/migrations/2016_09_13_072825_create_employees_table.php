@@ -13,6 +13,7 @@ class CreateEmployeesTable extends Migration {
 			$table->string('first_name');
 			$table->string('middle_name')->nullable();
 			$table->string('last_name');
+			$table->string('gender');
 			$table->integer('type_id')->unsigned();
 			$table->integer('department_id')->unsigned();
 			$table->string('email')->unique();
@@ -21,6 +22,7 @@ class CreateEmployeesTable extends Migration {
 			$table->tinyInteger('status');
 			$table->integer('used_paid_leaves')->default('0');
 			$table->integer('used_unpaid_leaves')->default('0');
+			$table->string('profile_pic')->nullable()->default(NULL);
 		});
 	}
 

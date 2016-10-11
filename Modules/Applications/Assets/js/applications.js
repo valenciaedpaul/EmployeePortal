@@ -215,7 +215,7 @@ function loadTable(url){
                             if(data.application['status'] == 'approved'){
                                 $('#status-badge-container').html('<span class="badge green darken-1 white-text"><i class="fa fa-check-circle-o" aria-hidden="true"></i> Application Approved</span>');
                             }else if(data.application['status'] == 'pending'){
-                                $('#status-badge-container').html('<span class="badge blue darken-1 white-text"><i class="fa fa-hourglass-half" aria-hidden="true"></i> Pending for Approval</span>');
+                                $('#status-badge-container').html('<span class="badge grey lighten-2"><i class="fa fa-hourglass-half" aria-hidden="true"></i> Pending for Approval</span>');
                             }else if(data.application['status'] == 'disapproved' || data.application['status'] == 'denied'){
                                 $('#status-badge-container').html('<span class="badge red darken-1 white-text"><i class="fa fa-ban" aria-hidden="true"></i> Application Denied</span>');
                             }

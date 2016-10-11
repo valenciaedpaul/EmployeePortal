@@ -1,3 +1,9 @@
+.login-bg {
+    /*background-image: url("/public/images/material_bg-blurred.png");*/
+    background-image: url("/public/images/material_bg.png");
+    background-size: 100%;
+}
+
 .container {
     width: 90% !important;
 }
@@ -18,6 +24,89 @@ nav .brand-logo {
     padding-left: 5px !important;
 }
 
-.heroic-red{
-    background-color:#b90707 !important
+.ep.media-lg {
+    position: relative;
+}
+
+.ep.media-lg img {
+    /*background: #ffffff;*/
+    width: 120px;
+    height: 120px;
+    border-radius: 100px;
+    object-fit: cover;
+    position: absolute;
+    left: 0;
+    box-shadow: 0 8px 9px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+    top: -20px;
+}
+
+.card .card-image {
+    max-height: 332px;
+    overflow-y: hidden;
+}
+
+.card .card-image .card-title {
+    color: #fff;
+    position: absolute;
+    bottom: 0px;
+    left: 10px;
+    padding: 20px;
+}
+
+.card .card-image .card-title .title {
+    margin-left: 110px;
+}
+
+.card .card-image .card-title .subtitle {
+    margin-left: 110px;
+    font-size: 18px;
+}
+
+.card.profile {
+    width: 60%;
+}
+
+.center-card {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.label {
+    margin-right: 10px;
+}
+
+.collapsible-header.active.ep {
+    background-color: #546e7a !important;
+    color: #ffffff;
+}
+
+.login-card-container {
+    position: absolute !important;
+    top: 15% !important;
+    left: 35% !important;
+    z-index: 1300;
+}
+
+.login-card-container .card {
+    box-shadow: 2px 8px 25px rgba(0, 0, 0, .5);
+}
+
+.custom-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: #ffffff;
+    height: 100%;
+    width: 100%;
+    opacity: .3;
+}
+
+nav a.button-collapse {
+    padding-left: 10px;
+    margin-right: 15px;
+    display: inline !important;
+}
+
+nav a.button-collapse i {
+    font-size: 1.7rem;
 }
