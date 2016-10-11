@@ -18,4 +18,14 @@ class EmployeeType extends Model {
 	{
 		return self::find($type_id)->can_approve;
 	}
+
+	public static function hasTopAccess($id)
+	{
+		$employee_type = self::find($id);
+		if($employee_type){
+			return $employee_type->access_level == 1;
+		}else{
+			return false;
+		}
+	}
 }

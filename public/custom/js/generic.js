@@ -8,6 +8,9 @@ $(document).ready(function(){
     //initialize materialize select
     $('select').material_select();
 
+    // Initialize collapse button
+    $(".button-collapse").sideNav();
+
     //Initialize datepickers
     $('.datepicker').pickadate({
         selectMonths: true, // Creates a dropdown to control month

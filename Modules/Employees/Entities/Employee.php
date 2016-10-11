@@ -15,6 +15,9 @@ class Employee extends Authenticatable {
 		'password', 'remember_token',
 	];
 
+	const MALE = 'male';
+	const FEMALE = 'female';
+
 	public function scopeSupervisors($query, $employee)
 	{
 		$canApproveEmployeeTypes = EmployeeType::getCanApprove();
@@ -47,6 +50,25 @@ class Employee extends Authenticatable {
 		}else{
 			return false;
 		}
+	}
+
+	public static function getProfilePic($id = null)
+	{
+		$employee_id = $id ? $id : Auth::user()->id;
+		$employee = self::find($employee_id);
+		$avatar = $employee->profile_pic ?
+			$employee->profile_pic :
+			$employee->gender == Employee::MALE ?
+				asset('public/images/avatars/male1.png') :
+				asset('public/images/avatars/female1.png');
+		return $avatar;
+	}
+
+	public static function getFullname($id = null)
+	{
+		$employee_id = $id ? $id : Auth::user()->id;
+		$employee = self::find($employee_id);
+		return $employee->first_name . ' ' . $employee->middle_name . ' ' . $employee->last_name;
 	}
 
 }

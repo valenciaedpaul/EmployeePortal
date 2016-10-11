@@ -4,12 +4,8 @@
     - Applications
 @endsection
 
-@section('nav_buttons')
-    <li><a href="{{ url('applications/form') }}">Apply</a></li>
-@endsection
-
 @section('content')
-    <h2>Applications</h2>
+    <h3>Applications</h3>
 
     {!! csrf_field() !!}
     <input type="hidden" id="employee_id" value="{{ Auth::user()->id }}">

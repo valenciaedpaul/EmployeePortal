@@ -105,9 +105,9 @@
                     </div>
                 @endif
                 <div class="card-action center-align">
-                    <a href="{{ url('applications') }}" class="waves-effect waves-dark btn white grey-text text-darken-3">Cancel</a>
+                    <a href="{{ url($cancel_url) }}" class="waves-effect waves-dark btn white grey-text text-darken-3">Cancel</a>
                     <button class="btn waves-effect waves-light" type="submit" form="application_form">
-                        <i class="material-icons right">send</i>
+                        <i class="fa fa-paper-plane right" aria-hidden="true"></i>
                         Submit
                     </button>
                 </div>

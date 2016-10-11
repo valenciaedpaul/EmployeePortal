@@ -25,7 +25,7 @@ table.dataTable thead th.sorting:after {
 	content: "\f0dc";
 	color: #ddd;
 	font-size: 0.8em;
-	padding-top: 0.12em;
+	padding-top: 1em;
 }
 table.dataTable thead th.sorting_asc:after {
 	content: "\f0de";

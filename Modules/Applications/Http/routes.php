@@ -5,8 +5,8 @@ Route::group(['middleware' => ['web', 'auth'], 'prefix' => 'applications', 'name
     Route::get('/', 'ApplicationsController@index');
 
     Route::get('/get/all', 'ApplicationsController@getAllApplications');
-    Route::get('/get/supervisor_level/{employee_id}', 'ApplicationsController@getSupervisedApplications');
-    Route::get('/get/employee_level/{employee_id}', 'ApplicationsController@getEmployeeApplications');
+    Route::get('/get/supervisor_level/', 'ApplicationsController@getSupervisedApplications');
+    Route::get('/get/employee_level/{employee_id?}', 'ApplicationsController@getEmployeeApplications');
 
     Route::get('/form', 'ApplicationsController@getForm');
     Route::post('/form', 'ApplicationsController@save');
